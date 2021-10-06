@@ -24,13 +24,13 @@ import (
 	"golang.org/x/crypto/ssh/terminal"
 	"gopkg.in/natefinch/lumberjack.v2"
 
+	"github.com/WahyuSiddarta/unimportant/conf"
+	database "github.com/WahyuSiddarta/unimportant/db"
+	"github.com/WahyuSiddarta/unimportant/helper"
+	"github.com/WahyuSiddarta/unimportant/model"
 	"github.com/budisugianto/tollbooth_echo"
 	"github.com/didip/tollbooth"
 	"github.com/didip/tollbooth/limiter"
-	"github.com/ruangnyaman/rna-ecommerce-backend/conf"
-	database "github.com/ruangnyaman/rna-ecommerce-backend/db"
-	"github.com/ruangnyaman/rna-ecommerce-backend/helper"
-	"github.com/ruangnyaman/rna-ecommerce-backend/model"
 
 	"github.com/jmoiron/sqlx"
 	"github.com/labstack/echo-contrib/session"

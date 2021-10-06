@@ -4,6 +4,7 @@
     { "code": "E1010", "message": "Username / Password must be supplied" },
     { "code": "E2000", "message": "Password Not Match" },
     { "code": "E2001", "message": "Timestamp difference too high" },
-    { "code": "E9501", "message": "Error!, Something Went Wrong" }
+    { "code": "E9501", "message": "Error!, Something Went Wrong" },
+    { "code": "E9502", "message": "Error!, Something Went Wrong" }
   ]
 }

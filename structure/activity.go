@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/ruangnyaman/rna-ecommerce-backend/helper"
+	"github.com/WahyuSiddarta/unimportant/helper"
 )
 
 type SActivitiesApi struct {

@@ -4,21 +4,26 @@ import (
 	"database/sql"
 	"encoding/binary"
 	"encoding/hex"
-	"io/ioutil"
+	"fmt"
+	"io"
+	"os"
+	"path/filepath"
 	"strconv"
 
 	"net/http"
 	"strings"
 	"time"
 
+	"github.com/WahyuSiddarta/unimportant/helper"
+	"github.com/WahyuSiddarta/unimportant/model"
+	"github.com/WahyuSiddarta/unimportant/structure"
 	"github.com/labstack/echo/v4"
-	"github.com/ruangnyaman/rna-ecommerce-backend/helper"
-	"github.com/ruangnyaman/rna-ecommerce-backend/model"
-	"github.com/ruangnyaman/rna-ecommerce-backend/structure"
+	"github.com/pkg/errors"
 )
 
 func (a API) UploadUserIdentity(c echo.Context) error {
-	userID := helper.GetJWTUserID(c)
+	// userID := helper.GetJWTUserID(c)
+	userID := "bab218a2-e005-726d-21df-9c94c5a72462"
 
 	identity, err := c.FormFile("identity")
 	if err != nil {
@@ -36,14 +41,42 @@ func (a API) UploadUserIdentity(c echo.Context) error {
 		})
 	}
 
-	bc1, err := ioutil.ReadAll(fc1)
-	fc1.Close()
+	// bc1, err := ioutil.ReadAll(fc1)
+	// fc1.Close()
 	if err != nil {
 		a.Log.Error().Msgf("file error read %s", err.Error())
 		return echo.NewHTTPError(http.StatusBadRequest, echo.Map{
 			"code": "E9603", "message": "Cannot Open File!",
 		})
 	}
+
+	fmt.Println("hello")
+	objectPath := "public/" + userID[0:2] + "/" + userID[2:4] + "/" + userID
+	_, err = os.Stat(objectPath)
+	if err != nil {
+		if os.IsNotExist(err) {
+			err = os.MkdirAll(objectPath, 0755)
+			if err != nil {
+				a.Log.Error().Msgf("error create directory", err.Error())
+				return echo.NewHTTPError(http.StatusInternalServerError, echo.Map{
+					"code": "E9502", "message": "Error!, Something Went Wrong",
+				})
+			}
+		} else {
+			a.Log.Error().Msgf("error check directory", err.Error())
+			return echo.NewHTTPError(http.StatusInternalServerError, echo.Map{
+				"code": "E9502", "message": "Error!, Something Went Wrong",
+			})
+		}
+	}
+
+	// fmt.Fprintf(w, "%v", handler.Header)
+	f, err := os.Create(filepath.Join(objectPath, identity.Filename))
+	if err != nil {
+		return errors.WithStack(err)
+	}
+	defer f.Close()
+	_, err = io.Copy(f, fc1)
 
 	return c.JSON(http.StatusOK, echo.Map{
 		"message": "Activation resend Succesfully",

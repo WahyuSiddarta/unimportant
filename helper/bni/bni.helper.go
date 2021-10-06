@@ -5,10 +5,10 @@ import (
 	"errors"
 	"time"
 
-	"github.com/ruangnyaman/rna-ecommerce-backend/conf"
-	bniEnc "github.com/ruangnyaman/rna-ecommerce-backend/encrypt/bni"
-	"github.com/ruangnyaman/rna-ecommerce-backend/helper"
-	myHTTP "github.com/ruangnyaman/rna-ecommerce-backend/helper/http"
+	"github.com/WahyuSiddarta/unimportant/conf"
+	bniEnc "github.com/WahyuSiddarta/unimportant/encrypt/bni"
+	"github.com/WahyuSiddarta/unimportant/helper"
+	myHTTP "github.com/WahyuSiddarta/unimportant/helper/http"
 )
 
 const (

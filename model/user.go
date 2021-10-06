@@ -4,9 +4,9 @@ import (
 	"database/sql"
 	"errors"
 
-	"github.com/ruangnyaman/rna-ecommerce-backend/conf"
-	"github.com/ruangnyaman/rna-ecommerce-backend/helper"
-	"github.com/ruangnyaman/rna-ecommerce-backend/structure"
+	"github.com/WahyuSiddarta/unimportant/conf"
+	"github.com/WahyuSiddarta/unimportant/helper"
+	"github.com/WahyuSiddarta/unimportant/structure"
 )
 
 func (db SQLDB) MGetUserProfileByUserID(user_id string) (structure.UserLogin, error) {

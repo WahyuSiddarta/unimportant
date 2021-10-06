@@ -5,7 +5,7 @@ import (
 
 	"github.com/jmoiron/sqlx"
 
-	"github.com/ruangnyaman/rna-ecommerce-backend/conf"
+	"github.com/WahyuSiddarta/unimportant/conf"
 
 	// PostgreSQL DB Driver
 	_ "github.com/lib/pq"
